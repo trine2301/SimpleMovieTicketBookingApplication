@@ -1,5 +1,7 @@
 package booking;
 
+import java.io.IOException;
+
 /**
  * @author Trine Merete Staverløkk
  * @version 0.1
@@ -11,8 +13,10 @@ public class MovieTicketServer {
 
   /**
    * Makes an instance of the MovieTicketServer class.
+   * @param movieName the name of the movie.
+   * @param availableSeats the number of available seats.
    */
-  public MovieTicketServer() {
+  public MovieTicketServer(String movieName, int availableSeats) {
     this.availableSeats = 10;
     this.movieName = "Wakanda Forever";
   }
@@ -29,12 +33,16 @@ public class MovieTicketServer {
     System.out.println("Hi, " + customerName + " we have " + availableSeats + " seats available for " + movieName);
     if (availableSeats > numberOfWantedSeats) {
       message = "Hi, " + customerName + " we do have " + numberOfWantedSeats + " seats available for " + movieName;
-      availableSeats -= numberOfWantedSeats;
+      deductTickets(numberOfWantedSeats);
     } else {
       message = "Sorry, " + customerName + ". We don\t have " + numberOfWantedSeats + " seats available for " + movieName;
     }
     System.out.println("We now have " + availableSeats + " left. ");
     return message;
+  }
+
+  public void deductTickets(int numberOfWantedSeats) {
+    this.availableSeats -= numberOfWantedSeats;
   }
 
 

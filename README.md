@@ -2,15 +2,12 @@
 Assignment 2 OS
 
 
-With the above code in context, this is what you will need to do:
 
-- [ ]  Accept *movie name* in the class constructor and store it as instance variables.
-- [ ]  Accept *number of available seats* in the class constructor and store it as instance variables.
-- [ ]  Implement the `bookTicket` method - This will be called by the users (`MovieTicketClient`).
-    - [ ]  This function needs to accept the name of the user (we will use this information to show who is booking the tickets) and the number of tickets the user wants.
-    - [ ]  Start by printing out the number of tickets available (Might seem useless but you’ll see why we need this when we get to Task 3). Eg:
-      `System.out.println("Hi," + *customerName* + " : " + availableSeats + " : Seats available for " + movieName);`
-    - [ ]  Then implement the `if` block. The idea is to check if the number of tickets needed exceeds the number of tickets available. If it is the case, `return`. Print a relevant message before you `return`. Eg:
-      `System.out.println("Hi," + *customerName* + " : Seats not available for " + movieName);`
-    - [ ]  Finally if we have enough tickets, deduct the number of tickets from the available number of tickets. Print a relevant message. Eg:
-      `System.out.println("Hi," + *customerName* + " : " + *numberOfSeats* + " Seats booked successfully for" + movieName);`
+This is the result in the console after running the main-method before changing code. I asume its because all threads are run at the same time, 
+and as a result the number of available tickets are not deducted after each other. The value is still the first value, which is a shared variable. We want it to first be 10, then deducted the amount of tickets wanted. 
+![img.png](img.png) 
+
+
+I made the necessary changes, which is 
+
+I used wait() to suspend a thresd, and notify() to wake a thread up. 
