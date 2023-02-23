@@ -6,37 +6,26 @@ package booking;
  */
 public class MovieTicketServer {
 
+  protected int availableSeats;
+  protected String movieName;
+
   /**
    * Makes an instance of the MovieTicketServer class.
    */
   public MovieTicketServer() {
-
+    this.availableSeats = 0;
+    this.movieName = "";
   }
 
-  /**
-   * Checks if a string is of a valid format or not.
-   *
-   * @param stringToCheck the string you want to check.
-   * @param errorPrefix   the error the exception should have if the string is invalid.
-   * @throws IllegalArgumentException gets thrown if the string to check is empty or null.
-   */
-  private void checkString(String stringToCheck, String errorPrefix) {
-    checkIfObjectIsNull(stringToCheck, errorPrefix);
-    if (stringToCheck.isEmpty()) {
-      throw new IllegalArgumentException("The " + errorPrefix + " cannot be empty.");
+  public String bookTicket(String customerName, int numberOfWantedSeats) {
+    String message;
+    System.out.println("Hi, " + customerName + " we have " + availableSeats + " seats available for " + movieName);
+    if (availableSeats > numberOfWantedSeats) {
+      message = "Hi, " + customerName + " we do have " + numberOfWantedSeats + " seats available for " + movieName;
+      availableSeats =- numberOfWantedSeats;
+    } else {
+      message = "Sorry, " + customerName + ". We don\t have " + numberOfWantedSeats + " seats available for " + movieName;
     }
-  }
-
-  /**
-   * Checks if an object is null.
-   *
-   * @param object the object you want to check.
-   * @param error  the error message the exception should have.
-   * @throws IllegalArgumentException gets thrown if the object is null.
-   */
-  private void checkIfObjectIsNull(Object object, String error) {
-    if (object == null) {
-      throw new IllegalArgumentException("The " + error + " cannot be null.");
-    }
+    return message;
   }
 }
