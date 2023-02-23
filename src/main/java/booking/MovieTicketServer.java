@@ -14,9 +14,15 @@ public class MovieTicketServer {
    */
   public MovieTicketServer() {
     this.availableSeats = 10;
-    this.movieName = "Wakanda forever";
+    this.movieName = "Wakanda Forever";
   }
 
+  /**
+   * Checks for availability, and deduct to number of wanted tickets from availability.
+   * @param customerName the name of the customer.
+   * @param numberOfWantedSeats the number of wanted seats.
+   * @return
+   */
   public String bookTicket(String customerName, int numberOfWantedSeats) {
     String message;
     checkIfObjectIsBelowZero(numberOfWantedSeats, "number of wanted seats");
@@ -31,12 +37,13 @@ public class MovieTicketServer {
     return message;
   }
 
+
   /**
-   * Checks if an object is null.
+   * Checks if an object is less than zero.
    *
    * @param object the object you want to check.
    * @param error  the error message the exception should have.
-   * @throws IllegalArgumentException gets thrown if the object is null.
+   * @throws IllegalArgumentException gets thrown if the object is less than zero.
    */
   private void checkIfObjectIsBelowZero(int object, String error) {
     if (object < 0) {
