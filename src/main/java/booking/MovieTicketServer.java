@@ -32,12 +32,13 @@ public class MovieTicketServer {
     checkIfObjectIsBelowZero(numberOfWantedSeats, "number of wanted seats");
     System.out.println("Hi, " + customerName + " we have " + availableSeats + " seats available for " + movieName);
     if (availableSeats > numberOfWantedSeats) {
-      message = "Hi, " + customerName + " we do have " + numberOfWantedSeats + " seats available for " + movieName;
       deductTickets(numberOfWantedSeats);
+      message = "We now have " + availableSeats + " left since you wanted " + numberOfWantedSeats;
+
     } else {
       message = "Sorry, " + customerName + ". We don\t have " + numberOfWantedSeats + " seats available for " + movieName;
     }
-    System.out.println("We now have " + availableSeats + " left. ");
+
     return message;
   }
 
