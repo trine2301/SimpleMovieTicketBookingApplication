@@ -13,23 +13,27 @@ public class MovieTicketClient extends Thread {
 
   /**
    * Makes an instance of the MovieTicketClient class.
+   *
    * @param movieTicketServer
-   * @param customerName the name of the customer.
+   * @param customerName         the name of the customer.
    * @param numberOfWantedTicket the number of wanted tickets.
    */
   public MovieTicketClient(MovieTicketServer movieTicketServer, String customerName, int numberOfWantedTicket) {
-    this.customerName = "";
-    this.numberOfWantedTickets = 0;
-    this.movieTicketServer = new MovieTicketServer("Troll", numberOfWantedTickets);
+    this.customerName = customerName;
+    this.numberOfWantedTickets = numberOfWantedTicket;
+    this.movieTicketServer = new MovieTicketServer(movieTicketServer.movieName, movieTicketServer.availableSeats);
   }
 
-
   public synchronized void run() {
-    movieTicketServer.bookTicket(customerName, numberOfWantedTickets);
-    /*try {
-      movieTicketServer.bookTicket(customerName, numberOfWantedTickets).wait();
-    } catch (InterruptedException e) {
-      e.printStackTrace();
+    //movieTicketServer.bookTicket(customerName, numberOfWantedTickets);
+/*    Object process = movieTicketServer.bookTicket(customerName, numberOfWantedTickets);
+    synchronized (process) {
+      try {
+        process.wait();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
     }*/
+    this.movieTicketServer.bookTicket(customerName, numberOfWantedTickets);
   }
 }

@@ -17,8 +17,8 @@ public class MovieTicketServer {
    * @param availableSeats the number of available seats.
    */
   public MovieTicketServer(String movieName, int availableSeats) {
-    this.availableSeats = 10;
-    this.movieName = "Wakanda Forever";
+    this.availableSeats = availableSeats;
+    this.movieName = movieName;
   }
 
   /**
@@ -31,7 +31,7 @@ public class MovieTicketServer {
     String message;
     checkIfObjectIsBelowZero(numberOfWantedSeats, "number of wanted seats");
     System.out.println("Hi, " + customerName + " we have " + availableSeats + " seats available for " + movieName);
-    if (availableSeats > numberOfWantedSeats) {
+    if (availableSeats >= numberOfWantedSeats) {
       deductTickets(numberOfWantedSeats);
       message = "We now have " + availableSeats + " left since you wanted " + numberOfWantedSeats;
 
