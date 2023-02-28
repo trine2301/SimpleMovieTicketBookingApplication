@@ -24,16 +24,13 @@ public class MovieTicketClient extends Thread {
     this.movieTicketServer = new MovieTicketServer(movieTicketServer.movieName, movieTicketServer.availableSeats);
   }
 
+
+
+  @Override
   public synchronized void run() {
-    //movieTicketServer.bookTicket(customerName, numberOfWantedTickets);
-/*    Object process = movieTicketServer.bookTicket(customerName, numberOfWantedTickets);
-    synchronized (process) {
-      try {
-        process.wait();
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
-    }*/
-    this.movieTicketServer.bookTicket(customerName, numberOfWantedTickets);
+
+    movieTicketServer.bookTicket(customerName, numberOfWantedTickets).notify();
+
   }
 }
+

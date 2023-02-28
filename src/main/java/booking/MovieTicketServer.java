@@ -32,18 +32,16 @@ public class MovieTicketServer {
     checkIfObjectIsBelowZero(numberOfWantedSeats, "number of wanted seats");
     System.out.println("Hi, " + customerName + " we have " + availableSeats + " seats available for " + movieName);
     if (availableSeats >= numberOfWantedSeats) {
-      deductTickets(numberOfWantedSeats);
+      this.availableSeats -= numberOfWantedSeats;
       message = "We now have " + availableSeats + " left since you wanted " + numberOfWantedSeats;
-
     } else {
-      message = "Sorry, " + customerName + ". We don\t have " + numberOfWantedSeats + " seats available for " + movieName;
-    }
-
-    return message;
+      message = "Sorry, " + customerName + ". We don´t have " + numberOfWantedSeats + " seats available for " + movieName;
+    } return message;
   }
 
-  public void deductTickets(int numberOfWantedSeats) {
-    this.availableSeats -= numberOfWantedSeats;
+  public static void main(String[] args) {
+    MovieTicketServer movieTicketServer = new MovieTicketServer("Incredibles", 10);
+    System.out.println(movieTicketServer.bookTicket("Trine", 11));
   }
 
 
